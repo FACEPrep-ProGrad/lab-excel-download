@@ -1,5 +1,5 @@
 package service;
-/*
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -25,14 +25,40 @@ public class ExcelGenerator {
 
 			
 			// Type your code here
-			
+			HSSFWorkbook workbook = new HSSFWorkbook(); 
+
+			HSSFSheet sheet = workbook.createSheet("Prograd Details");
+			int rownum =0;
+	        HSSFRow row = sheet.createRow(rownum++);
+        	int cellnum = 0;
+        	row.createCell(cellnum++).setCellValue("ID");
+        	row.createCell(cellnum++).setCellValue("NAME");
+        	row.createCell(cellnum++).setCellValue("RATINGS");
+        	row.createCell(cellnum++).setCellValue("COMMENT");
+        	row.createCell(cellnum++).setCellValue("RECOMMEND");
+        	
+        	
+	        for(Prograd details: list) {
+	        	
+	        	row = sheet.createRow(rownum++);
+	        	cellnum = 0;
+	        	
+	        	row.createCell(cellnum++).setCellValue((String)details.getId());
+	        	row.createCell(cellnum++).setCellValue((String)details.getName());
+	        	row.createCell(cellnum++).setCellValue((String)details.getRate());
+	        	row.createCell(cellnum++).setCellValue((String)details.getComment());
+	        	row.createCell(cellnum++).setCellValue((String)details.getRecommend());
 		
 			}
 			// Do not modify the lines given below
-			 out = new FileOutputStream(filename);
-			hwb.write(out);
+			out = new FileOutputStream("D://ProgradDetails.xls");
+			workbook.write(out);
+			out.close();
+			workbook.close();
+			System.out.println("ProgradDetails.xls written successfully on disk.");
+			return workbook;
 		
-			return hwb;
+			
 			}
 		catch (Exception e) {
 				e.printStackTrace();
@@ -44,4 +70,3 @@ public class ExcelGenerator {
 		
 	}
 }
-*/
